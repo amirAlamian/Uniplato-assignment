@@ -1,0 +1,56 @@
+version: "3.5"
+volumes:
+  app-mysql-data:
+
+networks:
+  app-net:
+    name: app-net
+
+services:
+  app-category: 
+    container_name: app-category
+    restart: always
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes: 
+      - ./app-category:/app
+    tty: true
+    ports: 
+      - 8000:3000
+    env_file:
+      - .env
+    networks:
+      - app-net
+    depends_on: 
+      - 'app-mysql'
+    command: ["sh", "-c", "ls && npm install && npm start"]
+  app-mysql:
+    container_name: app-mysql
+    restart: always
+    image: mysql:8.0
+    volumes: 
+      - app-mysql-data:/data/db
+    environment: 
+      - MYSQL_ROOT_PASSWORD=my_password:admin123456AQ
+      - MYSQL_DATABASE=category
+    ports:
+      - 3306:3306
+    networks:
+      - app-net
+  # mysql-workbench:
+  #   image: ghcr.io/linuxserver/mysql-workbench
+  #   container_name: mysql-workbench
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/London
+  #   volumes:
+  #     - /path/to/config:/config
+  #   ports:
+  #     - 3000:3000
+  #   cap_add:
+  #     - IPC_LOCK
+  #   restart: unless-stopped
+
+

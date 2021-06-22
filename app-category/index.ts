@@ -11,6 +11,4 @@ import container from 'src/container';
 import { App } from 'src/application/App';
 
 const app: App = container.resolve('app');
-app.start().then((http) => {
-  // console.log(http);
-});
+app.start();

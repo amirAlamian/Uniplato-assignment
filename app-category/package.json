@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^2.25.0",
+    "ajv": "^8.6.0",
     "awilix": "^4.3.4",
     "express": "^4.17.1",
     "module-alias": "^2.2.2",

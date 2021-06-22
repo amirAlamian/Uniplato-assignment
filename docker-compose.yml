@@ -32,25 +32,11 @@ services:
     volumes: 
       - app-mysql-data:/data/db
     environment: 
-      - MYSQL_ROOT_PASSWORD=my_password:admin123456AQ
+      - MYSQL_ROOT_PASSWORD=admin123456AQ
       - MYSQL_DATABASE=category
     ports:
       - 3306:3306
     networks:
       - app-net
-  # mysql-workbench:
-  #   image: ghcr.io/linuxserver/mysql-workbench
-  #   container_name: mysql-workbench
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - TZ=Europe/London
-  #   volumes:
-  #     - /path/to/config:/config
-  #   ports:
-  #     - 3000:3000
-  #   cap_add:
-  #     - IPC_LOCK
-  #   restart: unless-stopped
 
 

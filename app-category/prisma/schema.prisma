@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = "mysql://root:admin123456AQ@app-mysql:3306/category"
 }
 
 generator client {
@@ -11,10 +11,10 @@ generator client {
 }
 
 
-model Category {
-  id         Int         @id @default(autoincrement()) 
-  latitude   String   @unique @default("null")
-  longitude  String   @unique @default("null")
-  category   String  @default("null")
+model category {
+  id         Int      @id @default(autoincrement()) 
+  latitude   Int      @unique @default(0)
+  longitude  Int      @unique @default(0)
+  category   String   @default("null")
   counter    Int      @default(0)
 }

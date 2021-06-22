@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
       {
-        url: `http://localhost:${config.exposePort}${config.apiPrefix}}`,
+        url: `http://localhost:${config.exposePort}${config.apiPrefix} `,
       },
     ],
   },

@@ -1,4 +1,5 @@
 import Ajv, { JSONSchemaType } from 'ajv';
+import { StatusCodes } from 'src/interface/rest/constants/Statuscodes.enum';
 
 export enum TypeEnum {
   INCREASE = 'increase',
@@ -42,7 +43,7 @@ export class UpdateCategoryRequest {
     if (validateFields(data)) {
       return true;
     } else {
-      throw validateFields.errors;
+      throw { statusCode: StatusCodes.BAD_REQUEST, errors: validateFields.errors };
     }
   }
 }

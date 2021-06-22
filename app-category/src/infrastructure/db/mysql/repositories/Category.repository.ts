@@ -19,4 +19,7 @@ export class CategoryRepository {
 
     return this.prisma.category.update(query);
   }
+  findAllCategory () {
+    return this.prisma.category.findMany();
+  }
 }

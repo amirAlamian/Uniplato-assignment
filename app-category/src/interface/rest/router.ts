@@ -3,13 +3,17 @@ import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec, swaggerOptions } from 'config/swagger';
 import { StatusCodes } from 'src/interface/rest/constants/Statuscodes.enum';
 import { categoryRouter } from 'src/interface/rest/modules/category/categoryRouter';
-import { errorHandler } from 'src/interface/rest/errors/errorHandler'
-;
+import { errorHandler } from 'src/interface/rest/errors/errorHandler';
+import cors from 'cors';
+
 
 export const router = (container) => () => {
   const apiRouter = Router();
 
   apiRouter
+    .use(cors({
+      origin: '*',
+    }))
     .use(express.json())
     .use(express.urlencoded({ extended: false }));
 

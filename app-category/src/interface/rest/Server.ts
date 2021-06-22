@@ -11,16 +11,14 @@ export class Server {
     this.express = express();
     this.express.disable('x-powered-by');
     this.express.use(morgan('dev'));
-    this.express.use(`${this.config.apiPrefix}`, router);
+    this.express.use((`${this.config.apiPrefix}` ?? '/api'), router);
   }
 
 
   start () {
     return new Promise((resolve) => {
-      console.log(this.config.port);
-
       const http = this.express.listen(
-        this.config.port,
+        this.config.port ?? 3000,
         () => {
           console.log(
             ` server [p ${process.pid}] is Listening on port ${this.config.port}`,

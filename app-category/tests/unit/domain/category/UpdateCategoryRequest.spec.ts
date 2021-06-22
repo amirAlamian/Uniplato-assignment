@@ -33,20 +33,22 @@ describe('UpdateCategoryRequest', () => {
     const { UpdateCategoryRequest } = req.body.scope.cradle;
 
     await UpdateCategoryRequest.validate(props).catch((err) => {
-      expect(err).toStrictEqual([
-        {
-          instancePath: '/type',
-          schemaPath: '#/properties/type/enum',
-          keyword: 'enum',
-          params: { allowedValues: [ 'increase', 'decrease' ] },
-        },
-        {
-          instancePath: '/categoryId',
-          schemaPath: '#/properties/categoryId/type',
-          keyword: 'type',
-          params: { type: 'number' },
-        },
-      ]);
+      expect(err).toStrictEqual({
+        statusCode: 401,
+        errors: [
+          {
+            instancePath: '/type',
+            schemaPath: '#/properties/type/enum',
+            keyword: 'enum',
+            params: { allowedValues: [ 'increase', 'decrease' ] },
+          },
+          {
+            instancePath: '/categoryId',
+            schemaPath: '#/properties/categoryId/type',
+            keyword: 'type',
+            params: { type: 'number' },
+          },
+        ] });
     });
   });
 });

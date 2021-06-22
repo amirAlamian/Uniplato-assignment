@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { scopeCreator } from 'src/interface/rest/middlewares/scopeCreator.middleware';
-import { update } from 'src/interface/rest/modules/category/controllers';
+import { update, get } from 'src/interface/rest/modules/category/controllers';
 
 export const categoryRouter = (container) => {
   /**
@@ -53,6 +53,24 @@ export const categoryRouter = (container) => {
      */
   router.patch('/:categoryId', scopeCreator(container), update);
 
+
+  /**
+     * @swagger
+     *
+     *   /category:
+     *      get:
+     *         tags: ['Category']
+     *         summery: get category 
+     *         description: get categories by Id
+     *         responses:
+     *           200:
+     *             description: Item is ready.
+     *           400:
+     *             description: Request failed.
+     *           404:
+     *             description: Resource not found.
+     */
+  router.get('/', scopeCreator(container), get);
 
   return router;
 };

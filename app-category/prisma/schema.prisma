@@ -3,11 +3,12 @@
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:admin123456AQ@app-mysql:3306/category"
+  url      = "mysql://root:admin123456AQ@app-mysql:3306/Uniplato"
 }
 
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native"]
 }
 
 

@@ -1,7 +1,12 @@
 export const errorHandler = (err, req, res, next) => {
   if (err.statusCode) {
-    res.status(err.statusCode).json(err);
+    return res.status(err.statusCode).json(err);
   } else {
-    res.status(500).send('internal server error');
+    if (err.code === 'P2021') {
+      return res.status(500).send('Please run the database seeder');
+    }
+
+    console.log(err);
+    return res.status(500).send('Internal server error');
   }
 };

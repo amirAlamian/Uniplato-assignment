@@ -34,7 +34,7 @@ services:
       - ./mysql:/mysql
     environment: 
       - MYSQL_ROOT_PASSWORD=admin123456AQ
-      - MYSQL_DATABASE=category
+      - MYSQL_DATABASE=Uniplato
     ports:
       - 3306:3306
     networks:

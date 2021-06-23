@@ -3,9 +3,9 @@ import {
   asFunction,
   asClass,
   asValue,
-} from 'awilix';
+} from 'awilix'; // dependency injector
 
-const container = createContainer();
+const container = createContainer(); // awilix container will pass all the registrations to any instances
 import { App } from 'src/application/App';
 import { Server } from 'src/interface/rest/Server';
 import { config } from 'config';

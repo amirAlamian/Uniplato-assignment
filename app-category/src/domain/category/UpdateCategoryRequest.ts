@@ -40,7 +40,7 @@ export class UpdateCategoryRequest {
     };
     const validateFields = this.ajv.compile(schema);
 
-    if (validateFields(data)) {
+    if (validateFields(data)) { // data is valid?
       return true;
     } else {
       throw { statusCode: StatusCodes.BAD_REQUEST, errors: validateFields.errors };

@@ -1,0 +1,44 @@
+version: "3.5"
+volumes:
+  app-mysql-data:
+
+networks:
+  app-net:
+    name: app-net
+
+services:
+  app-category: 
+    container_name: app-category
+    restart: always
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes: 
+      - ./app-category:/app
+    tty: true
+    ports: 
+      - 8000:3000
+    env_file:
+      - .env
+    networks:
+      - app-net
+    depends_on: 
+      - 'app-mysql'
+    command: ["sh", "-c", "ls && npm install && npm start"]
+  app-mysql:
+    container_name: app-mysql
+    restart: always
+    image: mysql:8.0
+    volumes: 
+      - app-mysql-data:/data/db
+      - ./mysql:/mysql
+    environment: 
+      - MYSQL_ROOT_PASSWORD=admin123456AQ
+      - MYSQL_DATABASE=Uniplato
+    ports:
+      - 3306:3306
+    networks:
+      - app-net
+    
+
+

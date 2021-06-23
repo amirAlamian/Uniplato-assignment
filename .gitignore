@@ -1,0 +1,4 @@
+/app-category/node_modules
+.env
+/app-category/dist
+/app-category/coverage

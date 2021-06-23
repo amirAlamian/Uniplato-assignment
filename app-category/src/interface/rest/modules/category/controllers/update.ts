@@ -6,7 +6,7 @@ import { StatusCodes } from 'src/interface/rest/constants/Statuscodes.enum';
 export const update = async (req: Request, res: Response) => {
   const { scope, ...updateData } = req.body;
   const { UpdateCategoryUseCase }:{ UpdateCategoryUseCase: UpdateCategoryUseCase } = scope.cradle;
-  const data = await UpdateCategoryUseCase.execute({ ...updateData, ...req.params });
+  const data = await UpdateCategoryUseCase.execute({ ...updateData, categoryId: parseInt(req.params.categoryId) });
 
   return res.status(StatusCodes.SUCCESS).json(
     data,
